@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Box Website</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- <link rel="stylesheet" href="box.css"> -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/spectrum/1.8.0/spectrum.min.css">
+    <!-- Add AOS CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+</head>
+<style>
+    /* Basic reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Global styles */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+/* Header styles */
+header {
+    background: #333;
+    color: #fff;
+    padding: 10px 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+header .logo {
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+}
+
+header .logo img {
+    max-height: 50px;
+    margin-right: 10px;
+}
+
+header .logo h2 {
+    margin: 0;
+}
+
+header nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+header nav ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+}
+
+header nav ul li {
+    margin: 0 15px;
+}
+
+header nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+/* Hero section styles */
+.hero-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background: url('path/to/hero-background.jpg') no-repeat center center/cover;
+    color: #fff;
+    text-align: center;
+}
+
+.hero-content {
+    max-width: 800px;
+}
+
+.hero-content h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+
+.hero-content p {
+    font-size: 1.2rem;
+}
+
+/* Categories section styles */
+#categories {
+    padding: 50px 20px;
+    text-align: center;
+}
+
+#categories h2 {
+    margin-bottom: 30px;
+}
+
+.category1, .category {
+    display: inline-block;
+    width: 30%;
+    margin: 10px;
+    position: relative;
+    overflow: hidden;
+}
+
+.category img {
+    width: 100%;
+    transition: transform 0.3s ease;
+}
+
+.category:hover img {
+    transform: scale(1.1);
+}
+
+.category p {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    padding: 10px;
+}
+
+/* Custom box section styles */
+.cus {
+    padding: 50px 20px;
+    background: #fff;
+    text-align: center;
+}
+
+.custom-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.custom-box img {
+    max-width: 100px;
+    margin-right: 20px;
+}
+
+.custom-text h1 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+/* Reviews section styles */
+.reveiw {
+    padding: 50px 20px;
+    background: #eee;
+}
+
+.reveiw h2 {
+    margin-bottom: 20px;
+}
+
+/* Comment section styles */
+.comment-section {
+    margin-top: 30px;
+}
+
+.comment {
+    background: #fff;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+.comment .username {
+    font-weight: bold;
+}
+
+/* Ensure to add transitions for AOS */
+[data-aos] {
+    opacity: 0;
+    transition: opacity 0.6s ease-out;
+}
+
+[data-aos].aos-animate {
+    opacity: 1;
+}
+
+</style>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <img src="logo kbm.png" alt="Custom Box Logo">
+                <h2 class="name">Kainat box maker</h2>
+                <br>
+                <h2 class="name" style="font-style: italic; margin-bottom:10px; color:aliceblue;">YOUR VISION OUR BOX</h2>
+            </div>
+            <input type="checkbox" id="click">
+            <label for="click" class="menu-btn">
+                <i class="fas fa-bars"></i>
+            </label>
+            <ul>
+                <li><a class="active" href="#">Home</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a href="#">About us </a></li>
+                <li><a href="#">Sign in </a></li>
+                <li><a href="#">Blog</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <section class="hero-section">
+        <div class="container">
+            <div class="hero-content" data-aos="fade-up">
+                <div class="text">
+                    <h1>"YOUR VISION, <br> OUR BOX"</h1>
+                    <p>Lorem ipsum dolor sit amet,<br> consectetur adipisicing hh fbhfbgyh <br> Sunt dolore, perspiciatis sequi, laboriosam quidem.</p>
+                </div>
+                <img src="Green Brown Gradient 3D English Prepositions of Place and Direction Presentation.png" alt="Placeholder Image">
+            </div>
+        </div>
+    </section>
+
+    <section id="categories" class="categories" data-aos="fade-up">
+        <div class="container">
+            <h2>Popular Box Categories</h2>
+            <div class="category1" id="shoeBox" data-aos="fade-left">
+                <img src="./Shoe box.png" alt="Shoe Box">
+                <a href="./pages/images/text.html"><p>Shoe Boxes</p></a> 
+            </div>
+            <div class="category" id="shoeBox" data-aos="fade-right">
+                <img src="Pizza box.png" alt="Pizza Box">
+                <a href="./pages/images/pizzabox.html"><p>Pizza Boxes</p></a> 
+            </div>
+            <div class="category1" id="shoeBox" data-aos="fade-left">
+                <img src="cosmetic box.png" alt="Cosmetic Box">
+                <a href="cosmeticBox.html"><p>Cosmetic Box</p></a>
+            </div>
+            <div class="category" id="shoeBox" data-aos="fade-right">
+                <img src="jewellery box.png" alt="Jewellery Box">
+                <a href="./pages/images/gift.html"><p>Gift Box</p></a>
+            </div>
+            <div class="category1" id="shoeBox" data-aos="fade-left">
+                <img src="carton.png" alt="Carton">
+                <a href='./pages/images/carton.html'><p>Carton</p></a> 
+            </div>
+            <div class="category" id="shoeBox" data-aos="fade-right">
+                <img src="https://source.unsplash.com/390x350/?shoes" alt="Shoe Box">
+                <a href="./pages/images/gift.html"><p>Shoe Boxes</p></a>
+            </div>
+        </div>
+    </section>
+
+    <div class="cus">
+        <div class="custom-box" data-aos="fade-up">
+            <div class="customBoximg"><img src="reveiw.png" alt=""></div>
+            <div class="custom-text">
+                <a href="./pages/images/custom.html"><h1 style="text-decoration: none; color: white;">Custom box</h1></a>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem cumque hic <br> impedit. Nisi rerum praese</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="reveiw">
+        <div class="container-re" data-aos="fade-up">
+            <div class="reveiw-ani" id="shoeBox" data-aos="fade-left">
+                <img src="reveiw.png" alt="Review">
+            </div>
+            <div class="preveiw"> 
+                <a href="reveiw.htm"><h2 style="color: #ccc;">Review section</h2>Lorem, ipsum dolor sit amet consectetur <br> adipisicing Necessitatibus, possimus nostrum vitae, <br> voluptate animi modi <br> labore id in qui incidunt <br> optio soluta accusamusnd</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/spectrum/1.8.0/spectrum.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1200, // Duration of animations in milliseconds
+        });
+
+        alert("WELCOME TO OUR STORE");
+        console.log('HELLO, WELCOME TO OUR STORE');
+
+        // Initialize Spectrum Color Picker
+        $('.color-picker').spectrum({
+            preferredFormat: "hex", // You can choose the format of the selected color
+            showInput: true // Show the input box to input color manually
+        });
+
+        // Example of attaching a scroll event listener without passive option
+        window.addEventListener('scroll', handleScroll);
+
+        // Function to handle scroll event
+        function handleScroll(event) {
+            // Your scroll event handling logic here
+        }
+
+        // Revised code with passive option
+        window.addEventListener('scroll', handleScroll, { passive: true });
+
+        // Reviews
+        document.getElementById("comment-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            const username = document.getElementById("username").value;
+            const commentText = document.getElementById("comment").value;
+            const commentDiv = document.createElement("div");
+            commentDiv.classList.add("comment");
+
+            const usernameElement = document.createElement("p");
+            usernameElement.classList.add("username");
+            usernameElement.textContent = username + ":";
+
+            const commentTextElement = document.createElement("p");
+            commentTextElement.classList.add("comment-text");
+            commentTextElement.textContent = commentText;
+
+            commentDiv.appendChild(usernameElement);
+            commentDiv.appendChild(commentTextElement);
+
+            document.querySelector(".comment-section").appendChild(commentDiv);
+
+            document.getElementById("comment-form").reset();
+        });
+    </script>
+</body>
+</html>

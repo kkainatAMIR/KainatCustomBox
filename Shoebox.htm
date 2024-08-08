@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shoe Box//KainatBox</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: 'Times New Roman', Times, serif;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: rgb(20, 90, 93);
+        }
+
+        .container {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .product {
+            width: 90%;
+            max-width: 750px;
+            display: flex;
+            margin-top: 40px;
+        }
+
+        .gallery {
+            flex-basis: 49%;
+            background: #8a1a1a;
+            transform: scale(1.08);
+            box-shadow: -10px 5px 10px 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .gallery img {
+            width: 103%;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery img:hover {
+            transform: scale(1.1);
+        }
+
+        .details {
+            flex-basis: 53%;
+            background: black;
+            padding: 40px;
+            padding-left: 60px;
+            box-shadow: -10px 5px 10px 10px rgba(0, 0, 0, 0.1);
+            font-size: 13px;
+            color: whitesmoke;
+            font-weight: 500;
+        }
+
+        .details h1 {
+            color: white;
+            font-size: 35px;
+        }
+
+        .details h2 {
+            color: #fff;
+            font-size: 30px;
+            font-weight: 600;
+        }
+
+        .details h3 {
+            color: #00d874;
+            margin-bottom: 20px;
+        }
+
+        .details form {
+            font-size: 15px;
+            font-weight: 400;
+        }
+
+        .size-select,
+        .quantity-select {
+            display: flex;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .size-select p,
+        .quantity-select p {
+            width: 70px;
+        }
+
+        .size-select input:checked + span,
+        .quantity-select input:checked + span {
+            color: saddlebrown;
+            font-weight: 600;
+        }
+
+        .size-select input,
+        .quantity-select input {
+            display: none;
+        }
+
+        .size-select span,
+        .quantity-select span {
+            padding: 5px;
+            cursor: pointer;
+        }
+
+        .quantity-select input[type="number"] {
+            background: #eeee;
+            border: 0;
+            outline: 0;
+            color: #333;
+            padding: 2px 2px 2px 15px;
+            width: 50px;
+            border-radius: 12px;
+            display: block;
+        }
+
+        form button {
+            background: #553ff0;
+            color: #fff;
+            font-size: 17px;
+            width: 100%;
+            padding: 10px;
+            border-radius: 30px;
+            border: 0;
+            outline: 0;
+            margin-top: 50px;
+            box-shadow: 0 10px 10px rgba(85, 63, 240, 0.25);
+            cursor: pointer;
+        }
+
+        .controls {
+            position: absolute;
+            bottom: 40px;
+            right: 20px;
+        }
+
+        .button {
+            display: block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(2, 3, 3, 0.5);
+            margin: 10px;
+            cursor: pointer;
+        }
+
+        .button.active {
+            background: #553ff0;
+        }
+
+        .main-description {
+            width: 100%;
+            background: #5b7267;
+            height: 400px;
+        }
+
+        .main-description ul {
+            margin: 41px;
+            font-size: 17px;
+        }
+
+        /* Popover styles */
+        .popover {
+            position: fixed;
+            top: 10%;
+            left: 17%;
+            transform: translateX(-50%);
+            font-size: 16px;
+            width: 800px;
+            height: 450px;
+            max-width: 800px;
+            padding: 25px;
+            background: cadetblue;
+            color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            transform: scale(0);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            z-index: 1000;
+        }
+
+        .popover.popover-open {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .popover h1 {
+            color: #1a3d46;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .popover p {
+            margin-bottom: 20px;
+        }
+
+        .popover-list {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 20px;
+            font-size: 19px;
+        }
+
+        .popover-list li {
+            margin-bottom: 10px;
+        }
+
+        .description-image {
+            max-width: 386px;
+    height: 329px;
+    position: relative;
+    bottom: 368px;
+    left: 497px;}
+
+        /* Blur effect */
+        .blur-background {
+            filter: blur(4px);
+        }
+
+        /* .button-pop { 
+            color: #fff;
+            background-color: cadetblue;
+            font-size: 16px;
+            padding: 10px 25px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            outline: none;
+            transition: background-color 0.3s ease;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .button-pop:hover {
+            background-color: white;
+            color: cadetblue;
+        } */
+
+        
+.button-pop {
+    position: absolute;
+    bottom: 25px;
+    right: 50px;
+    /* background-color: #4dd0e1; Matching Aqua from gradient */
+    /* color: #ff7e67; Coral for contrast */
+    color: cadetblue;
+    background-color: #fff;
+    font-size: 16px;
+    padding: 10px 25px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    outline: none;
+    transition: background-color 0.3s ease;
+}
+
+.button-pop:hover {
+   color: white; 
+  background-color: cadetblue; 
+}
+
+    </style>
+</head>
+<body>
+    <div id="backgroundContainer">
+        <div class="container" id="mainContainer">
+            <div class="product">
+                <div class="gallery">
+                    <img src="img1.png" id="productImg" alt="Product Image">
+                    <div class="controls">
+                        <span class="button active" data-img="img1.png"></span>
+                        <span class="button" data-img="img2.png"></span>
+                        <span class="button" data-img="img3.png"></span>
+                    </div>
+                </div>
+
+                <div class="details">
+                    <h1 id="productName">Phone Packaging Box 18 * 12 * 7</h1>
+                    <h2 id="productPrice">10 RS</h2>
+                    <h2>Description:</h2>
+                    <p>This box has been designed to meet the new pricing structure set by the Royal Mail...</p>
+                    <form>
+                        <div class="size-select">
+                            <p>Weight :</p>
+                            <label for="small">
+                                <input type="radio" name="size" id="small">
+                                <span>115 Grams</span>
+                            </label>
+                        </div>
+                        <div class="quantity-select">
+                            <p>Quantity :</p>
+                            <input type="number" value="50" id="quantityInput" min="1">
+                        </div>
+                        <button type="button" id="buyNowButton">Buy Now</button>
+                        <button type="button" id="buttonShow">Show the popover</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="mypopover" class="popover">
+        <h1>Description</h1>
+        <ul class="popover-list">
+            <li>305mm (L) x 229mm (W) x 102mm (D)</li>
+            <li>Each Box Weighs around 115 Grams</li>
+            <li>Internal Measurements: 12" x 9" x 4" (305 x 229 x 102 mm)</li>
+            <li>External Measurements: 320 x 244 x 117 mm</li>
+            <li>Small Parcel Size</li>
+            <li>You May Choose To Purchase From 1 Box To 1000 Boxes</li>
+            <li>Strong Cardboard Mail Boxes</li>
+            <li>Quick And Easy To Assemble</li>
+            <li>Note: Delivered Flat Pack and Securely Wrapped</li>
+            <li>Ideal for packing shoes, toys, clothes etc.</li>
+        </ul>
+        <img src="man.png" alt="Description image" class="description-image">
+        <button id="closePopover" class="button-pop">Close</button>
+    </div>
+
+    <script>
+        const productImg = document.getElementById('productImg');
+        const buttons = document.getElementsByClassName('button');
+        const backgroundContainer = document.getElementById('backgroundContainer');
+        const popover = document.getElementById('mypopover');
+        const buttonShow = document.getElementById('buttonShow');
+        const closePopover = document.getElementById('closePopover');
+        const buyNowButton = document.getElementById('buyNowButton');
+
+        const productName = document.getElementById('productName').textContent;
+        const productPrice = 10; // Fixed price per item in RS
+        const quantityInput = document.getElementById('quantityInput');
+
+        for (let i = 0; i < buttons.length; i++) {
+            buttons[i].onclick = function() {
+                productImg.src = buttons[i].dataset.img;
+                for (let bt of buttons) {
+                    bt.classList.remove('active');
+                }
+                buttons[i].classList.add('active');
+            }
+        }
+
+        buttonShow.onclick = function() {
+            popover.classList.add('popover-open');
+            backgroundContainer.classList.add('blur-background');
+        }
+
+        closePopover.onclick = function() {
+            popover.classList.remove('popover-open');
+            backgroundContainer.classList.remove('blur-background');
+        }
+
+        buyNowButton.onclick = function() {
+            const quantity = quantityInput.value;
+            const totalCost = productPrice * quantity;
+
+            // Redirect to Buy Now page with query parameters
+            window.location.href = `buynow.htm?name=${encodeURIComponent(productName)}&price=${productPrice}&quantity=${quantity}&total=${totalCost}`;
+        }
+    </script>
+</body>
+</html>

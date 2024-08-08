@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Box</title>
+    <!-- <link rel="stylesheet" href="box.css"> -->
+</head>
+<style>
+   /* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    background-color: #3eafb1;
+    color: white;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+header {
+    background-color: #177E80;;
+    padding: 10px 0;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo img {
+    height: 50px;
+}
+
+.menu {
+    list-style: none;
+    display: flex;
+}
+
+.menu li {
+    margin: 0 15px;
+}
+
+.menu a {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.menu a:hover {
+    color: #fff;
+}
+
+.custom-box-section {
+    padding: 60px 20px;
+    background-color: #33999b;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f5f7fa;
+    border-radius: 10px;
+    /* border: 2px solid cadetblue; */
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.7);
+}
+
+.container h1 {
+    font-size: 38px;
+    margin-bottom: 48px;
+    text-align: center;
+    color:black;
+    background-color: white;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: #155724;
+    border: 2px solid cadetblue;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    color: black;
+}
+
+form h3 {
+    margin-top: 20px;
+    color: black;
+}
+
+form label {
+    margin: 10px 0 5px;
+}
+
+form input,
+form select,
+form textarea {
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    border: 1px solid #333;
+    background-color: #fff;
+    color: #333;
+}
+
+form input[type="file"] {
+    padding: 5px;
+    background-color: #f5f7fa;
+}
+
+form input[type="color"] {
+    width: 50px;
+    height: 30px;
+    border: none;
+}
+
+form button {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: black;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+form button:hover {
+    background-color: #fff;
+    color: #333;
+
+}
+
+#deadline-warning {
+    color: red;
+    font-weight: bold;
+    margin-top: 10px;
+}
+</style>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <img src="logo.png" alt="Custom Box Logo">
+            </div>
+            <ul class="menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="custom.html">Custom Box</a></li>
+                <li><a href="review.html">Reviews</a></li>
+                <li><a href="contqact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <section id="custom-box" class="custom-box-section">
+        <div class="container">
+            <h1>Custom Box</h1>
+            <form id="custom-form">
+                <h3>Contact Information</h3>
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required placeholder="Name"><br>
+                
+                <label for="email">Email:</label>
+                <input type="email" id="email" placeholder="Anna@gmail.com" required ><br>
+
+                <label for="phoneNumber">Phone Number:</label>
+                <input type="tel" id="phoneNumber" name="phoneNumber" required><br>
+                
+                <h3>Box Specification</h3>
+                
+                <label for="category">Box Category:</label>
+                <select id="category" name="category">
+                    <option value="shirtBox">Shirt Boxes</option>
+                    <option value="hatBox">Lengha Boxes</option>
+                    <option value="pizzaBox">Pizza Box</option>
+                    <option value="shoeBox">Shoe Boxes</option>
+                    <option value="carton">Carton</option>
+                    <option value="giftBox">Gift Box</option>
+                    <option value="perfumeBox">Phone Box</option>
+                    <option value="movingStorageBox">Moving Storage Box</option>
+                    <option value="cosmeticBox">Cosmetic Box</option>
+                    <option value="other">Other</option>
+                </select><br>
+
+                <div id="shoe-options" style="display: none;">
+                    <label for="shoeType">Shoe Type:</label>
+                    <select id="shoeType" name="shoeType">
+                        <option value="men">Men's Shoes</option>
+                        <option value="women">Women's Shoes</option>
+                        <option value="children">Children's Shoes</option>
+                    </select><br>
+                </div>
+
+                <label for="description">Enter Product Details:</label>
+                <textarea id="description" name="description" rows="4"></textarea><br>
+
+                <h3>Design Requirements</h3>
+                
+                
+                <label for="design_file">Upload Your Design File:</label>
+                <input type="file" name="design_file" accept=".pdf, .ai, .png, .jpg, .jpeg"><br>
+                
+                <label for="purpose">Text:</label>
+                <textarea id="purpose" name="purpose" rows="4" placeholder="Text"></textarea><br>
+
+                <h3>Order Details</h3>
+<!-- 
+                <label for="quantity">Quantity:</label>
+                <input type="number" name="quantity" id="quantity" min="1" value="50" required><br>
+                 -->
+
+
+                 <label for="quantity">Quantity:</label>
+                 <input type="number" name="quantity" id="quantity" min="50" value="50" required><br>
+                 
+
+                <label for="special_instructions">Special Instructions:</label>
+                <textarea name="special_instructions" id="special_instructions"></textarea><br>
+                
+                <label for="deadline">Deadline:</label>
+                <input type="date" name="deadline" id="deadline" required><br>
+
+                <div id="deadline-warning" style="color: red; display: none;">
+                    <span>Delivery takes at least 20 days.</span>
+                </div>
+
+                <button type="submit" class="btn">Submit</button>
+       
+            </form>
+
+            <div id="confirmation-message" style="display: none; padding: 20px; background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; border-radius: 5px; margin-top: 20px;">
+                <!-- Confirmation message will be inserted here -->
+            </div>
+            
+        </div>
+    </section>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const categorySelect = document.getElementById('category');
+            const shoeOptions = document.getElementById('shoe-options');
+            const deadlineInput = document.getElementById('deadline');
+            const deadlineWarning = document.getElementById('deadline-warning');
+            const customForm = document.getElementById('custom-form');
+            const confirmationMessageDiv = document.getElementById('confirmation-message');
+        
+            categorySelect.addEventListener('change', function() {
+                if (categorySelect.value === 'shoeBox') {
+                    shoeOptions.style.display = 'block';
+                } else {
+                    shoeOptions.style.display = 'none';
+                }
+            });
+        
+            deadlineInput.addEventListener('change', function() {
+                const selectedDate = new Date(deadlineInput.value);
+                const currentDate = new Date();
+                const timeDifference = selectedDate.getTime() - currentDate.getTime();
+                const dayDifference = Math.ceil(timeDifference / (1000 * 3600 * 24));
+        
+                if (dayDifference < 20) {
+                    deadlineWarning.style.display = 'block';
+                } else {
+                    deadlineWarning.style.display = 'none';
+                }
+            });
+        
+            customForm.addEventListener('submit', function(event) {
+                const quantityInput = document.getElementById('quantity');
+                const quantity = parseInt(quantityInput.value, 10);
+        
+                if (quantity < 50) {
+                    alert('Quantity must be at least 50.');
+                    quantityInput.focus();
+                    event.preventDefault(); // Prevent form submission
+                    return;
+                }
+                event.preventDefault();
+    
+                confirmationMessageDiv.innerHTML = `
+                    <p>Thank you for your order!</p>
+                    <p>If you have any further requirements, please contact us at:</p>
+                    <p>Phone: 03234381976</p>
+                    <p>Email: qqq12@gmail.com</p>`;
+                confirmationMessageDiv.style.display = 'block';
+            });
+        });
+    </script>
+    
+    </body>
+</html>

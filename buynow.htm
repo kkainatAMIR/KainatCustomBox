@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buy Now</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            background-color: #417576;
+        }
+        #orderSummary {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            font-size: 24px;
+            color: #333;
+        }
+        p {
+            font-size: 18px;
+            color: #555;
+        }
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            text-decoration: none;
+            color: #007BFF;
+            font-size: 18px;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div id="orderSummary">
+        <h1 id="productName"></h1>
+        <p id="productPrice"></p>
+        <p id="productQuantity"></p>
+        <p id="totalCost"></p>
+        <a href="#" id="confirmOrderLink">Proceed to Confirm Order</a>
+    </div>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const productName = urlParams.get('name');
+        const productPrice = urlParams.get('price');
+        const quantity = urlParams.get('quantity');
+        const total = urlParams.get('total');
+        const referrer = document.referrer; // Get the referrer URL
+
+        document.getElementById('productName').textContent = `Product: ${productName}`;
+        document.getElementById('productPrice').textContent = `Price per Item: ${productPrice} RS`;
+        document.getElementById('productQuantity').textContent = `Quantity: ${quantity}`;
+        document.getElementById('totalCost').textContent = `Total Cost: ${total} RS`;
+
+        // Store referrer URL in localStorage
+        localStorage.setItem('referrer', referrer);
+
+        document.getElementById('confirmOrderLink').href = `ordercon.html?name=${encodeURIComponent(productName)}&price=${encodeURIComponent(productPrice)}&quantity=${encodeURIComponent(quantity)}&total=${encodeURIComponent(total)}`;
+    </script>
+</body>
+</html>

@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Order confirmation page for your purchase.">
+    <title>Order Confirmation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        .container {
+            width: 80%;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #1a3d46;
+            text-align: center;
+        }
+        #orderDetails {
+            margin-top: 20px;
+            text-align: center;
+        }
+        #orderDetails h2 {
+            color: #1a3d46;
+        }
+        #orderDetails p {
+            color: #666;
+            font-size: 18px;
+        }
+        .order-info {
+            margin-top: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+        .order-info .form-group {
+            flex: 1;
+            min-width: 250px;
+        }
+        .order-info label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        .order-info input,
+        .order-info select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-top: 5px;
+        }
+        .button-container {
+            text-align: center;
+        }
+        .center-button {
+            background-color: #1a3d46;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 20px;
+            transition: background-color 0.3s ease;
+            display: inline-block;
+        }
+        .center-button:hover {
+            background-color: #143a3b;
+        }
+        a {
+            text-decoration: none;
+        }
+        .message {
+            margin: 20px 0;
+            padding: 15px;
+            border-radius: 5px;
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Order Confirmation</h1>
+        <div id="message" class="message"></div>
+        <div id="orderDetails"></div>
+        <div class="button-container">
+            <a href="#" id="backToProducts">
+                <button class="center-button">Back to Products</button>
+            </a>
+        </div>
+        
+        <div class="order-info">
+            <div class="form-group">
+                <label for="first-name">First Name:</label>
+                <input type="text" id="first-name" required placeholder="First Name">
+            </div>
+            <div class="form-group">
+                <label for="last-name">Last Name:</label>
+                <input type="text" id="last-name" required placeholder="Last Name">
+            </div>
+            <div class="form-group">
+                <label for="company-name">Company Name:</label>
+                <input type="text" id="company-name" required placeholder="Company Name">
+            </div>
+            <div class="form-group">
+                <label for="country">Country/Region:</label>
+                <input type="text" id="country" required placeholder="Country/Region">
+            </div>
+            <div class="form-group">
+                <label for="street-address">Street Address:</label>
+                <input type="text" id="street-address" required placeholder="Street Address">
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone:</label>
+                <input type="text" id="phone" required placeholder="Phone">
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" placeholder="you@example.com">
+            </div>
+            <div class="form-group">
+                <label for="payment">Payment Method:</label>
+                <select id="payment">
+                    <option value="credit-card">Credit Card</option>
+                    <option value="paypal">PayPal</option>
+                    <option value="jazzcash">JazzCash</option>
+                    <option value="easypaisa">EasyPaisa</option>
+                </select>
+            </div>
+            <div class="button-container">
+                <button class="center-button" id="placeOrder">Place Order</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function getQueryParams() {
+            const params = new URLSearchParams(window.location.search);
+            return {
+                name: params.get('name'),
+                price: parseFloat(params.get('price')),
+                quantity: parseInt(params.get('quantity')),
+                total: parseFloat(params.get('total'))
+            };
+        }
+
+        function displayOrderDetails() {
+            const { name, price, quantity, total } = getQueryParams();
+            const orderDetailsDiv = document.getElementById('orderDetails');
+
+            if (name && quantity) {
+                const calculatedTotalCost = price * quantity || total;
+
+                orderDetailsDiv.innerHTML = `
+                    <h2>Product: ${name}</h2>
+                    <p>Price per unit: Rs ${price}</p>
+                    <p>Quantity: ${quantity}</p>
+                    <h3>Total Cost: Rs ${calculatedTotalCost.toFixed(2)}</h3>
+                `;
+            } else {
+                orderDetailsDiv.innerHTML = '<p>Invalid order details. Please try again.</p>';
+            }
+        }
+
+        function showMessage(message, isSuccess) {
+            const messageDiv = document.getElementById('message');
+            messageDiv.innerHTML = `<p>${message}</p>`;
+            messageDiv.style.backgroundColor = isSuccess ? '#d4edda' : '#f8d7da';
+            messageDiv.style.color = isSuccess ? '#155724' : '#721c24';
+            messageDiv.style.border = isSuccess ? '1px solid #c3e6cb' : '1px solid #f5c6cb';
+            messageDiv.style.display = 'block';
+        }
+
+        function validateForm() {
+            const fields = [
+                'first-name', 'last-name', 'company-name', 'country', 'street-address', 'phone', 'email'
+            ];
+            let isValid = true;
+
+            fields.forEach(fieldId => {
+                const field = document.getElementById(fieldId);
+                if (!field.value.trim()) {
+                    isValid = false;
+                    field.style.borderColor = '#f5c6cb';
+                } else {
+                    field.style.borderColor = '#ddd';
+                }
+            });
+
+            // Validate email separately
+            const emailField = document.getElementById('email');
+            const emailValue = emailField.value.trim();
+            if (emailValue && !/\S+@\S+\.\S+/.test(emailValue)) {
+                isValid = false;
+                emailField.style.borderColor = '#f5c6cb';
+            }
+
+            return isValid;
+        }
+
+        document.getElementById('placeOrder').addEventListener('click', () => {
+            if (validateForm()) {
+                showMessage('Your order has been successfully processed. Thank you for shopping with us!', true);
+            } else {
+                alert('Please fill out all required fields correctly before placing your order.');
+            }
+        });
+
+        document.getElementById('backToProducts').href = localStorage.getItem('referrer') || 'shoebox.html';
+
+        displayOrderDetails();
+    </script>
+</body>
+</html>

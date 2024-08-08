@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        header {
+            background-color: cadetblue;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        .contact-info {
+            margin-bottom: 20px;
+        }
+
+        .contact-info h2 {
+            color: cadetblue;
+        }
+
+        .contact-info ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .contact-info li {
+            margin-bottom: 10px;
+        }
+
+        #map {
+            height: 300px; /* Adjust height as needed */
+            width: 100%;
+            background-color: #ddd; /* Placeholder for map */
+        }
+
+        .contact-form {
+            background-color: white;
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 5px;
+        }
+
+        .contact-form h2 {
+            color: cadetblue;
+        }
+
+        .contact-form label {
+            display: block;
+            margin-top: 10px;
+        }
+
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-top: 5px;
+        }
+
+        .contact-form button {
+            background-color: cadetblue;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .contact-form button:hover {
+            background-color: #4a6c6f;
+        }
+
+        footer {
+            background-color: cadetblue;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap"></script>
+</head>
+<body>
+    <header>
+        <h1>Contact Us</h1>
+    </header>
+    <main>
+        <section class="contact-info">
+            <h2>Get in Touch</h2>
+            <p>If you have any questions or concerns, please reach out to us!</p>
+            <ul>
+                <li><strong>Phone:</strong> 0323-4381976</li>
+                <li><strong>Email:</strong> KainatBox@gmail.com</li>
+                <li><strong>Address:</strong> Pak, Lahore, Bagbanpura, College Road</li>         
+            </ul>
+            <div id="map"></div>
+        </section>
+        <section class="contact-form">
+            <h2>Contact Form</h2>
+            <form id="contactForm">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+                <label for="subject">Subject:</label>
+                <input type="text" id="subject" name="subject">
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" rows="4" required></textarea>
+                <button type="submit">Send Message</button>
+            </form>
+        </section>
+    </main>
+    <!-- <footer>
+        <p>&copy; 2024 Your Company</p>
+    </footer> -->
+    <script>
+        function initMap() {
+            var mapOptions = {
+                center: { lat: 31.5497, lng: 74.3436 }, // Adjust to your location
+                zoom: 12
+            };
+            var map = new google.maps.Map(document.getElementById('map'), mapOptions);
+        }
+
+        document.getElementById('contactForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the form from submitting the traditional way
+            
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
+            
+            // Handle form submission here (e.g., send data to a server)
+            alert(`Thank you for your message, ${name}! We will get back to you soon.`);
+            
+            // Optionally clear the form
+            this.reset();
+        });
+    </script>
+</body>
+</html>
